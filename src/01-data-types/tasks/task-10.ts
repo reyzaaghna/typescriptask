@@ -16,3 +16,20 @@
  * 2. Store the product data in a single collection.
  * 3. Display the product data using console.log.
  */
+
+type Product = {
+  productCode: string;
+  productName: string;
+  price: number;
+  quantity: number;
+  isFreeShipping: boolean;
+};
+
+const shoppingCart: Product[] = [
+  { productCode: "KB001", productName: "Mechanical Keyboard", price: 850000, quantity: 1, isFreeShipping: true },
+  { productCode: "MS002", productName: "Wireless Mouse", price: 275000, quantity: 2, isFreeShipping: true },
+  { productCode: "HD003", productName: "External SSD 1TB", price: 1650000, quantity: 1, isFreeShipping: false },
+  { productCode: "HP004", productName: "Gaming Headset", price: 720000, quantity: 1, isFreeShipping: true }
+];
+
+console.log("Shopping Cart:", shoppingCart);
