@@ -24,3 +24,28 @@
  * - Final bill
  * - Green Energy Program eligibility
  */
+
+
+const previousMeter: number = 25640;
+const currentMeter: number = 25892;
+const electricityPricePerKwh: number = 1650;
+const solarPanelInstalled: boolean = true;
+const energySavingMode: boolean = false;
+
+const energyConsumption: number = currentMeter - previousMeter;
+let electricityBill: number = energyConsumption * electricityPricePerKwh;   
+
+let finalBill: number = electricityBill;
+if (solarPanelInstalled) {
+  finalBill *= 0.8; // Apply 20% discount for solar panel
+}
+if (energySavingMode) {
+  finalBill *= 0.95; // Apply additional 5% discount for energy saving mode
+}
+
+const isEligibleForGreenEnergyProgram: boolean = solarPanelInstalled && energyConsumption < 300 && energySavingMode;
+
+console.log("Energy Consumption:", energyConsumption);
+console.log("Electricity Bill:", electricityBill);
+console.log("Final Bill:", finalBill);
+console.log("Eligible for Green Energy Program:", isEligibleForGreenEnergyProgram);
