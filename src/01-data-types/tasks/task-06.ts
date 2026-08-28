@@ -23,7 +23,7 @@ type Product = {
 const product1: Product = {
   productCode: "PRD001",
   productName: "Wireless Mouse",
-  sellingPrice: 29.99,
+  sellingPrice: 30000,
   stockQuantity: 100,
   productWeight: 0.5,
   averageCustomerRating: 4.5,
@@ -33,7 +33,7 @@ const product1: Product = {
 const product2: Product = {
   productCode: "PRD002",
   productName: "Mechanical Keyboard",
-  sellingPrice: 79.99,
+  sellingPrice: 750000,
   stockQuantity: 50,
   productWeight: 1.2,
   averageCustomerRating: 4.8,
@@ -43,7 +43,7 @@ const product2: Product = {
 const product3: Product = {
   productCode: "PRD003",
   productName: "Bluetooth Headphones",
-  sellingPrice: 49.99,
+  sellingPrice: 250000,
   stockQuantity: 75,
   productWeight: 0.3,
   averageCustomerRating: 4.2,
