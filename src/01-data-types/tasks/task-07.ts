@@ -15,7 +15,7 @@
 type Registration = {
   studentID: string;
   fullName: string;
-  gradeLevel: number;
+  gradeLevel: string;
   courseID: string;
   courseTitle: string;
   instructorName: string;
@@ -27,7 +27,7 @@ type Registration = {
 const registration1: Registration = {
   studentID: "ST2026045",
   fullName: "Reyza Aghna",  
-  gradeLevel: 12,
+  gradeLevel: "12",
   courseID: "COURSE001",
   courseTitle: "Introduction to Programming",
   instructorName: "Dr. Smith",
@@ -39,7 +39,7 @@ const registration1: Registration = {
 const registration2: Registration = {
   studentID: "ST2026046",
   fullName: "Aleesya Dania",
-  gradeLevel: 11,
+  gradeLevel: "11",
   courseID: "COURSE002",
   courseTitle: "Intermediate Python Programming",
   instructorName: "Dr. Johnson",
@@ -51,7 +51,7 @@ const registration2: Registration = {
 const registration3: Registration = {
   studentID: "ST2026047",
   fullName: "Ryu SunJae",
-  gradeLevel: 12,
+  gradeLevel: "12",
   courseID: "COURSE003",
   courseTitle: "Advanced JavaScript Programming",
   instructorName: "Dr. Williams",

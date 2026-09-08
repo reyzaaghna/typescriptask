@@ -19,14 +19,16 @@ const friedRicePrice: number = 18000;
 const mineralWaterPrice: number = 5000;
 const friedRiceQuantity: number = 3;
 const mineralWaterQuantity: number = 2;
-const discount: number = 10000;
+const studentDiscount: number = 10000;
 
 const totalFoodPrice: number = friedRicePrice * friedRiceQuantity;
 const totalDrinkPrice: number = mineralWaterPrice * mineralWaterQuantity;
 const grandTotal: number = totalFoodPrice + totalDrinkPrice;
-const finalPayment: number = grandTotal - discount;
+const finalPayment: number = grandTotal - studentDiscount;
 
-console.log("Total Food Price:", totalFoodPrice);
-console.log("Total Drink Price:", totalDrinkPrice);
-console.log("Grand Total:", grandTotal);
-console.log("Final Payment:", finalPayment);
+console.log("STUDENT CAFETARIA RECEIPT");
+console.log(`Total Fried Rice Price (3 portions): Rp ${totalFoodPrice}`);
+console.log(`Total Mineral Water Price (2 bottles): Rp ${totalDrinkPrice}`);
+console.log(`Grand Total Before Discount: Rp ${grandTotal}`);
+console.log(`Student Discount: Rp ${studentDiscount}`);
+console.log(`Final Payment: Rp ${finalPayment}`);

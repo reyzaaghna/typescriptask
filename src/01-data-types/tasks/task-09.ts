@@ -28,4 +28,4 @@ const participants: Participant[] = [
   { studentID: "ST003", name: "Budi Santoso", age: 16, hasPaid: true }
 ];
 
-console.log("Participants:", participants);
+console.log("Participants:", participants[0].age);

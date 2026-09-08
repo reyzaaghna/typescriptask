@@ -46,6 +46,7 @@ const scholarshipAmount: number = isQualified ? 12000000 : 0;
 const totalScholarshipBudget: number = 500000000;
 const remainingBudget: number = totalScholarshipBudget - scholarshipAmount;
 
+console.log("UNIVERSITY SCHOLARSHIP SELECTION SYSTEM");
 console.log("Student Name:", studentName);
 console.log("GPA:", gpa);
 console.log("Family Income:", familyIncome);

@@ -21,7 +21,6 @@
  * 2. Store the temperature data in a single collection.
  * 3. Display the temperature data using console.log.
  */
-
 type TemperatureReading = {
   time: string;
   temperature: number;
@@ -39,3 +38,4 @@ const temperatureReadings: TemperatureReading[] = [
 ];
 
 console.log("Temperature Readings:", temperatureReadings);
+console.log("Greenhouse Temperatures:", temperatureReadings.map(reading => reading.temperature));

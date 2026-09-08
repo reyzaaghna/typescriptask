@@ -29,11 +29,18 @@ const taxRate: number = 0.11;
 const isVipMember: boolean = true;
 
 const roomSubtotal: number = roomPricePerNight * nightsStayed;
-const discount: number = isVipMember ? roomSubtotal * 0.12 : 0;
+let discount: number = 0;
+if (isVipMember) {
+    discount = roomSubtotal * 0.12;
+}
 const tax: number = (roomSubtotal - discount) * taxRate;
 const finalPayment: number = roomSubtotal - discount + tax + serviceCharge;
 const isEligibleForFreeBreakfast: boolean = nightsStayed >= 3 || isVipMember;
 
+console.log("HOTEL BILLING SYSTEM");
+console.log("Room Price per Night:", roomPricePerNight);
+console.log("Nights Stayed:", nightsStayed);
+console.log("VIP Member Status: ${isVipMember ? 'Yes' : 'No'}");
 console.log("Room Subtotal:", roomSubtotal);
 console.log("Discount:", discount);
 console.log("Tax:", tax);

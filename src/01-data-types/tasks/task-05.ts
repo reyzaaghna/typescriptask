@@ -22,31 +22,31 @@ type Attendance = {
 
 const attendance1: Attendance = {
   employeeID: "EMP001",
-  employeeName: "Mario Dominic",
+  employeeName: "Ryu SunJae",
   date: "2026-08-28",
   checkInTime: "09:00",
   checkOutTime: "17:00",
-  totalWorkingHours: 8,
+  totalWorkingHours: 9,
   isPresent: true
 };
 
 const attendance2: Attendance = {
   employeeID: "EMP002",
-  employeeName: "Faeyza Anandhito",
+  employeeName: "J.K Rowling",
   date: "2026-08-28",
   checkInTime: "08:30",
   checkOutTime: "16:30",
-  totalWorkingHours: 8,
+  totalWorkingHours: 9,
   isPresent: true
 };
 
 const attendance3: Attendance = {
   employeeID: "EMP003",
-  employeeName: "Dilshad Ahnaf",
+  employeeName: "Reyza Aghna S.",
   date: "2026-08-28",
   checkInTime: "10:00",
   checkOutTime: "18:00",
-  totalWorkingHours: 8,
+  totalWorkingHours: 9,
   isPresent: false
 };
 

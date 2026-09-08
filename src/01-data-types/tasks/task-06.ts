@@ -22,21 +22,21 @@ type Product = {
 
 const product1: Product = {
   productCode: "PRD001",
-  productName: "Wireless Mouse",
-  sellingPrice: 30000,
-  stockQuantity: 100,
-  productWeight: 0.5,
+  productName: "Comic Book",
+  sellingPrice: 120000,
+  stockQuantity: 70,
+  productWeight: 1.0,
   averageCustomerRating: 4.5,
   isDiscounted: false
 };
 
 const product2: Product = {
   productCode: "PRD002",
-  productName: "Mechanical Keyboard",
-  sellingPrice: 750000,
+  productName: "Iphone 15 Pro Max",
+  sellingPrice: 14000000,
   stockQuantity: 50,
-  productWeight: 1.2,
-  averageCustomerRating: 4.8,
+  productWeight: 2.0,
+  averageCustomerRating: 5.0,
   isDiscounted: true
 };
 

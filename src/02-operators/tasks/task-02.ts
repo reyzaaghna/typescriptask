@@ -21,4 +21,8 @@ const tuitionPaid: boolean = true;
 
 const isEligible: boolean = finalScore >= 75 && attendance >= 90 && tuitionPaid === true;
 
-console.log("Is Eligible:", isEligible);
+console.log("GRADUATION ELIGIBILITY CHECK");
+console.log(`Final Score: ${finalScore} (Min 75) ${finalScore >= 75}`);
+console.log(`Attendance: ${attendance} (Min 90) ${attendance >= 90}`);
+console.log(`Tuition Paid: ${tuitionPaid} (Required) ${tuitionPaid === true}`);
+console.log(`Is Eligible: ${isEligible}`);
