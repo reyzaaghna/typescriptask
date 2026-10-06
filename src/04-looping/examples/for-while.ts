@@ -47,3 +47,35 @@ for (let i = 1; i <= 10; i++) {
   if (i === 8) break; // stop at 8
   console.log(i);
 }
+
+
+//for loop
+console.log("=== for loop ===");
+for (let i =1; i <= 5; i++) {
+  console.log(`Count: ${i}`);
+}
+
+
+
+let starAmount4: number = 0;
+for (let d=1; d <=3; d++){
+  console.log ("*".repeat(d));
+  starAmount4 += d;
+}
+ for (let d=2; d >=1; d--){
+  console.log ("*".repeat(d));
+  starAmount4 += d;
+}
+console.log(`Star amount: ${starAmount4}`);
+
+
+let starAmount2: number = 0;
+for (let d=1; d <=2; d++){
+  console.log ("*".repeat(d),"".repeat(3-d));
+  starAmount2 += d;
+}
+ for (let d=1; d <=2; d++){
+  console.log ("".repeat(d),"*".repeat(3-d));
+  starAmount2 += d;
+}
+console.log(`Star amount: ${starAmount2}`);

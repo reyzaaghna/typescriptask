@@ -18,3 +18,22 @@ const stocks = [
     9, 0, 55, 13, 2,
     30, 8, 41, 0, 16
 ];
+
+let outofstockcount = 0;
+let lowstockcount = 0;
+let safestockcount = 0;
+let totalinventory = 0;
+let averagestock = 0;
+
+for (let i = 0; i < stocks.length; i++) {
+    const quantity = stocks[i];
+    totalinventory += quantity;
+
+    if (quantity === 0) {
+        outofstockcount++;
+    } else if (quantity < 10) {
+        lowstockcount++;
+    } else {
+        safestockcount++;
+    }
+}

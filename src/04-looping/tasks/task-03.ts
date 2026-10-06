@@ -23,3 +23,27 @@
  * - Number of passing students
  * - Number of failing students
  */
+
+const scores = [
+    82, 75, 91, 64, 88, 73, 95, 80, 69, 77, 84, 92, 58, 79, 86, 71, 90, 67, 83, 76
+] 
+
+let passingcount = 0;
+let failingcount = 0;
+let totalscore = 0;
+
+for (let i = 0; i < scores.length; i++) {
+    const score = scores[i];
+    totalscore += score;
+    if (score >= 75) {
+        passingcount++;
+    } else {
+        failingcount++;
+    }
+}
+let averagescore = totalscore / scores.length;
+
+console.log("Total Score:", totalscore);
+console.log("Average Score:", averagescore.toFixed(2));
+console.log("Number of Passing Students:", passingcount);
+console.log("Number of Failing Students:", failingcount);
