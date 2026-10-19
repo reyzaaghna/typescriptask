@@ -30,17 +30,29 @@ const scores = [
 ];
 
 function findHighestScore(scores: number[]): number {
-
+if (scores.length === 0) return 0;
+    return Math.max(...scores);
 }
 
 function findLowestScore(scores: number[]): number {
-
+if (scores.length === 0) return 0;
+    return Math.min(...scores);
 }
 
 function calculateAverage(scores: number[]): number {
-    
+    if (scores.length === 0) return 0;
+    const total = scores.reduce((sum, current) => sum + current, 0);
+    return total / scores.length;
 }
 
 function countPassedStudents(scores: number[]): number {
-
+    const passingScore = 75;
+    return scores.filter(score => score >= passingScore).length;
 }
+
+function displayReport(scores: number[]): void {
+    console.log("=== LAPORAN STATISTIK NILAI BACKEND ===");
+    console.log(`Highest Score : ${findHighestScore(scores)}`);
+    console.log(`Lowest Score  : ${findLowestScore(scores)}`);
+    console.log(`Average Score : ${calculateAverage(scores).toFixed(2)}`);
+    console.log(`Number of Passes    : ${countPassedStudents(scores)} students`);}

@@ -24,3 +24,20 @@
  * 5. Display every student's final grade.
 
  */
+
+function calculateFinalGrade(assignment: number, midterm: number, finalExam: number): number {
+    const finalGrade = (assignment * 0.3) + (midterm * 0.3) + (finalExam * 0.4);
+    return finalGrade;
+}
+
+const students = [
+    { name: "Alya", assignment: 85, midterm: 80, finalExam: 92 },
+    { name: "Budi", assignment: 78, midterm: 75, finalExam: 81 },
+    { name: "Citra", assignment: 90, midterm: 88, finalExam: 95 }
+];
+
+students.forEach(student => {
+    const finalGrade = calculateFinalGrade(student.assignment, student.midterm, student.finalExam);
+    console.log(`${student.name}: ${finalGrade.toFixed(2)}`);
+});
+

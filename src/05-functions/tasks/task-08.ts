@@ -22,6 +22,11 @@
  * - 1 void function to display the report.
  * 
  */
+interface Submission {
+    student: string;
+    submitted: boolean;
+    score: number;
+}
 const submissions = [
     {
         student: "Alya",
@@ -53,4 +58,51 @@ const submissions = [
         submitted: true,
         score: 96
     }
-];
+]; 
+
+function countSubmittedAssignments(submissions: Submission[]): number {
+    return submissions.filter(submission => submission.submitted === true).length;
+}
+
+function countMissingAssignments(submissions: Submission[]): number {
+    return submissions.filter(submission => submission.submitted === false).length;
+}
+
+function countPassedStudents(submissions: Submission[]): number {
+    return submissions.filter(submission => submission.submitted && submission.score >= 75).length;
+}
+
+function countStudentsRequiringRevision(submissions: Submission[]): number {
+    return submissions.filter(submission => submission.submitted && submission.score < 75).length;
+}
+
+function calculateAverageScore(submissions: Submission[]): number {
+    if (submissions.length === 0) return 0;
+    const totalScore = submissions.reduce((sum, submission) => sum + submission.score, 0);
+    return totalScore / submissions.length;
+}
+
+function getScoreExtremeValues(submissions: Submission[]): { highest: number, lowest: number } {
+    if (submissions.length === 0) return { highest: 0, lowest: 0 };
+    const scores = submissions.map(submission => submission.score);
+    return {
+        highest: Math.max(...scores),
+        lowest: Math.min(...scores)
+    };
+}
+
+function printLMSReport(submissions: Submission[]): void {
+    const extremes = getScoreExtremeValues(submissions);
+
+    console.log("=========================================");
+    console.log("       LMS ASSIGNMENT REPORT             ");
+    console.log("=========================================");
+    console.log(`Total Students            : ${submissions.length}`);
+    console.log(`Submitted Assignments     : ${countSubmittedAssignments(submissions)}`);
+    console.log(`Missing Assignments       : ${countMissingAssignments(submissions)}`);
+    console.log(`Passed Students           : ${countPassedStudents(submissions)}`);
+    console.log(`Students Requiring Revision: ${countStudentsRequiringRevision(submissions)}`);
+    console.log(`Average Score             : ${calculateAverageScore(submissions).toFixed(2)}`);
+    console.log(`Highest Score             : ${extremes.highest}`);
+    console.log(`Lowest Score              : ${extremes.lowest}`); 
+}

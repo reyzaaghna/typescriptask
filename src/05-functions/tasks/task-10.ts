@@ -33,7 +33,13 @@
  * - Use meaningful function names and parameters
  * Reuse existing functions whenever possible
  */
-
+interface Enrollment {
+    student: string;
+    course: string;
+    completed: boolean;
+    score: number;
+    duration: number;
+}
 const enrollments = [
     {
         student: "Alya",
@@ -92,3 +98,78 @@ const enrollments = [
         duration: 20
     }
 ];
+function getTotalEnrollments(data: Enrollment[]): number {
+    return data.length;
+}
+function getCompletedCount(data: Enrollment[]): number {
+    return data.filter(item => item.completed === true).length;
+}
+function getIncompleteCount(data: Enrollment[]): number {
+    return getTotalEnrollments(data) - getCompletedCount(data);
+}
+function calculateCompletionPercentage(data: Enrollment[]): number {
+    if (getTotalEnrollments(data) === 0) return 0;
+    return (getCompletedCount(data) / getTotalEnrollments(data)) * 100;
+}
+function getScoreExtremes(data: Enrollment[]): { highest: number; lowest: number } {
+    if (data.length === 0) return { highest: 0, lowest: 0 };
+    const scores = data.map(item => item.score);
+    return {
+        highest: Math.max(...scores),
+        lowest: Math.min(...scores)
+    };
+}
+function calculateAverageScore(data: Enrollment[]): number {
+    if (data.length === 0) return 0;
+    const totalScore = data.reduce((sum, item) => sum + item.score, 0);
+    return totalScore / data.length;
+}
+function getPassedStudentsCount(data: Enrollment[]): number {
+    return data.filter(item => item.score >= 75).length;
+}
+function filterDataByCourse(data: Enrollment[], courseName: string): Enrollment[] {
+    return data.filter(item => item.course === courseName);
+}
+function getTotalLearningHours(data: Enrollment[]): number {
+    return data.reduce((sum, item) => sum + item.duration, 0);
+}
+function calculateAverageDuration(data: Enrollment[]): number {
+    if (getTotalEnrollments(data) === 0) return 0;
+    return getTotalLearningHours(data) / getTotalEnrollments(data);
+}
+function printCourseSection(data: Enrollment[], courseName: string): void {
+    const courseData = filterDataByCourse(data, courseName);
+    const totalEnrolled = getTotalEnrollments(courseData);
+    const avgScore = calculateAverageScore(courseData);
+
+    console.log(` - ${courseName.padEnd(12)} : ${totalEnrolled} Students enrolled | Avg Score: ${avgScore.toFixed(2)}`);
+}
+function printAcademyDashboard(data: Enrollment[]): void {
+    const scoreExtremes = getScoreExtremes(data);
+
+    console.log("==================================================================");
+    console.log("                ONLINE LEARNING ACADEMY DASHBOARD                 ");
+    console.log("==================================================================");
+    
+    console.log("\n[ COMPLETION STATISTICS ]");
+    console.log(`Total Enrollments     : ${getTotalEnrollments(data)}`);
+    console.log(`Completed Enrollments : ${getCompletedCount(data)}`);
+    console.log(`Incomplete Enrollments: ${getIncompleteCount(data)}`);
+    console.log(`Completion Percentage : ${calculateCompletionPercentage(data).toFixed(2)}%`);
+
+    console.log("\n[ ACADEMIC STATISTICS ]");
+    console.log(`Highest Score         : ${scoreExtremes.highest}`);
+    console.log(`Lowest Score          : ${scoreExtremes.lowest}`);
+    console.log(`Average Score         : ${calculateAverageScore(data).toFixed(2)}`);
+    console.log(`Students Passed (>=75): ${getPassedStudentsCount(data)} students`);
+
+    console.log("\n[ LEARNING STATISTICS ]");
+    console.log(`Total Learning Hours  : ${getTotalLearningHours(data)} hours`);
+    console.log(`Avg Learning Duration : ${calculateAverageDuration(data).toFixed(2)} hours`);
+
+    console.log("\n[ COURSE STATISTICS ]");
+    printCourseSection(data, "TypeScript");
+    printCourseSection(data, "Database");
+    printCourseSection(data, "Backend");
+}
+printAcademyDashboard(enrollments);

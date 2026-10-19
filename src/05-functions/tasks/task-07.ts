@@ -10,7 +10,11 @@
  * 
  * Complete following functions!
  */
-
+interface Student {
+    name: string;
+    major: string;
+    active: boolean;
+}
 const students = [
   {
     name: "Alya",
@@ -39,18 +43,24 @@ const students = [
   }
 ];
 
-function countActiveStudents(...){
-
+function countActiveStudents(students: Student[]): number {
+    return students.filter(student => student.active === true).length; 
 }
 
-function countInactiveStudents(...){
-
+function countInactiveStudents(students: Student[]): number {
+    return students.filter(student => student.active === false).length;
 }
 
-function countStudentsByMajor(...){
-
+function countStudentsByMajor(students: Student[], major: string): number {
+    return students.filter(student => student.major === major).length;
 }
 
-function printEnrollmentReport(...){
-    
+function printEnrollmentReport(students: Student[]): void {
+    console.log("=== ENROLLMENT REPORT ===");
+    console.log(`Total Students : ${students.length}`);
+    console.log(`Active Students : ${countActiveStudents(students)}`);
+    console.log(`Inactive Students : ${countInactiveStudents(students)}`);
+    console.log(`Software Engineering Students : ${countStudentsByMajor(students, "Software Engineering")}`);
+    console.log(`Networking Students : ${countStudentsByMajor(students, "Networking")}`);
+    console.log(`Multimedia Students : ${countStudentsByMajor(students, "Multimedia")}`);
 }
