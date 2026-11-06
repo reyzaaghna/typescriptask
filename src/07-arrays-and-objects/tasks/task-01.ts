@@ -15,7 +15,7 @@
  * 4. Calculate the average score.
  */
 
-const students = [
+const students: { name: string; score: number }[] = [
   { name: "Andi", score: 85 },
   { name: "Budi", score: 62 },
   { name: "Citra", score: 91 },
@@ -32,7 +32,7 @@ const studentsNames = [
 ]
 
 const studentNames = students.map(student => student.name);
-const passedStudents = students.filter(student => student.score >= 70);
+const PassedStudents = students.filter(student => student.score >= 70);
 const citra = students.find(student => student.name === "Citra");
 const averageScore = students.reduce((total, student) => total + student.score, 0) / students.length;
 

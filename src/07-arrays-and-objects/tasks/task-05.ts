@@ -7,7 +7,7 @@
  * 4. Calculate class's average score
  */
 
-const students = [
+const studentss = [
     {
         id: 1,
         name: "Andi",
@@ -25,4 +25,35 @@ const students = [
     },
 ];
 
+const CorrectAnswers = ["A", "B", "C", "A", "B"];
+
+const Students = [
+    { id: 1, name: "Andi", answers: ["A", "B", "C", "A", "B"] },
+    { id: 2, name: "Budi", answers: ["A", "C", "C", "A", "D"] },
+    { id: 3, name: "Citra", answers: ["B", "B", "C", "A", "B"] },
+];
+
 const correctAnswers = ["A", "B", "C", "A", "B"];
+
+const studentsWithScores = students.map(student => {
+    const correctCount = student.answers.reduce((count: number, answer: string, index: number) => {
+    return answer === correctAnswers[index] ? count + 1 : count;
+}, 0);
+
+    
+    return {
+        ...student,
+        score: correctCount * 20
+    };
+});
+
+
+const passedStudents = studentsWithScores.filter(student => student.score > 70);
+
+
+const highestScoreStudent = studentsWithScores.reduce((highest, current) => {
+    return (current.score > highest.score) ? current : highest;
+}, studentsWithScores[0]);
+
+const totalClassScore = studentsWithScores.reduce((sum, student) => sum + student.score, 0);
+const classAverage = totalClassScore / studentsWithScores.length;
