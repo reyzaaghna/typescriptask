@@ -7,7 +7,7 @@
  * 4. Calculate class's average score
  */
 
-const studentss = [
+const studentsName = [
     {
         id: 1,
         name: "Andi",
@@ -27,17 +27,9 @@ const studentss = [
 
 const CorrectAnswers = ["A", "B", "C", "A", "B"];
 
-const Students = [
-    { id: 1, name: "Andi", answers: ["A", "B", "C", "A", "B"] },
-    { id: 2, name: "Budi", answers: ["A", "C", "C", "A", "D"] },
-    { id: 3, name: "Citra", answers: ["B", "B", "C", "A", "B"] },
-];
-
-const correctAnswers = ["A", "B", "C", "A", "B"];
-
-const studentsWithScores = students.map(student => {
+const studentsWithScores = studentsName.map(student => {
     const correctCount = student.answers.reduce((count: number, answer: string, index: number) => {
-    return answer === correctAnswers[index] ? count + 1 : count;
+    return answer === CorrectAnswers[index] ? count + 1 : count;
 }, 0);
 
     

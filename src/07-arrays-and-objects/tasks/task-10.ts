@@ -72,3 +72,45 @@ const submissions = [
     },
 ];
 
+const correctAnswersMap = new Map(questions.map(q => [q.id, q.correctAnswer]));
+
+const studentScores = submissions.map(submission => {   
+    let correctCount = 0;
+    submission.answers.forEach(answer => {
+        if (correctAnswersMap.get(answer.questionId) === answer.answer) {
+            correctCount++;
+        }
+    });
+
+    const score = correctCount * 25;
+    return {
+        student: submission.student,
+        score: score,
+        correct: correctCount,
+        wrong: submission.answers.length - correctCount
+    };
+});
+
+const averagescore = studentScores.reduce((sum, s) => sum + s.score, 0) / studentScores.length;
+
+const highestScore = Math.max(...studentScores.map(s => s.score));
+
+const lowestScore = Math.min(...studentScores.map(s => s.score));
+
+const passedstudents = studentScores.filter(s => s.score >= 70).length;
+
+const failedStudents = studentScores.length - passedstudents;
+
+const passRate = (passedstudents / studentScores.length) * 100; 
+
+const examAnalytics = {
+    totalStudents: studentScores.length,
+    averageScore: parseFloat(averageScore.toFixed(2)),  
+    highestScore: highestScore,
+    lowestScore: lowestScore,
+    passedStudents: passedStudents,
+    failedStudents: failedStudents,
+    passRate: parseFloat(passRate.toFixed(2))
+};  
+
+

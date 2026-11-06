@@ -35,3 +35,24 @@ const orders = [
         ],
     },
 ];
+
+const completedOrders = orders.filter(order => order.status === "completed");
+
+const ordersWithTotalValue = completedOrders.map(order => {
+    const totalValue = order.items.reduce((total, item) => total + (item.price * item.quantity), 0);
+    return {
+        ...order,
+        totalValue,
+    };
+});
+
+const customerSpending = ordersWithTotalValue.map(order => ({
+    customer: order.customer,
+    totalSpent: order.totalValue,
+}));        
+
+const topCustomer = customerSpending.reduce((max, customer) => {
+    return customer.totalSpent > max.totalSpent ? customer : max;
+}, { customer: "", totalSpent: 0 });
+
+const totalRevenue = ordersWithTotalValue.reduce((total, order) => total + order.totalValue, 0);    

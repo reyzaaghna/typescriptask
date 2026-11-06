@@ -33,3 +33,13 @@ const posts = [
     likes: 300,
   },
 ];
+
+const typescriptPosts = posts.filter(post => post.hashtags.includes("typescript"));
+const nestjsPosts = posts.filter(post => post.hashtags.includes("nestjs"));
+
+const postWithMostLikes = posts.reduce((maxPost, currentPost) => {
+  return currentPost.likes > maxPost.likes ? currentPost : maxPost;
+}, posts[0]);
+
+const totalLikes = posts.reduce((sum, post) => sum + post.likes, 0);
+
