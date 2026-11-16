@@ -36,9 +36,7 @@ const orders = [
     },
 ];
 
-const completedOrders = orders.filter(order => order.status === "completed");
-
-const ordersWithTotalValue = completedOrders.map(order => {
+const ordersWithTotalValue = orders.map(order => {
     const totalValue = order.items.reduce((total, item) => total + (item.price * item.quantity), 0);
     return {
         ...order,
@@ -46,7 +44,9 @@ const ordersWithTotalValue = completedOrders.map(order => {
     };
 });
 
-const customerSpending = ordersWithTotalValue.map(order => ({
+const completedOrders = ordersWithTotalValue.filter(order => order.status === "completed");
+
+const customerSpending = completedOrders.map(order => ({
     customer: order.customer,
     totalSpent: order.totalValue,
 }));        
@@ -55,4 +55,8 @@ const topCustomer = customerSpending.reduce((max, customer) => {
     return customer.totalSpent > max.totalSpent ? customer : max;
 }, { customer: "", totalSpent: 0 });
 
-const totalRevenue = ordersWithTotalValue.reduce((total, order) => total + order.totalValue, 0);    
+const totalRevenue = completedOrders.reduce((total, order) => total + order.totalValue, 0);
+
+const purchasedProducts = [...new Set(
+    completedOrders.flatMap(order => order.items.map(item => item.product))
+)];

@@ -2,10 +2,11 @@
  * An online exam has students and questions.
  * Tasks:
  * 1. Calculate each student's score (each correct answer get 25 points)
- * 2. Determine each student's correct answer, exp: [{student:"Andi", correct:0, wrong: 4}]
+ * 2. Determine each student's correct and wrong answer counts.
  * 3. Calculate the average score for each category.
  * 4. Generate final exam analytics
- * expeced result: {
+ * Passing score is 70. Expected analytics:
+ * {
         totalStudents: 3,
         averageScore: 66.67,
         highestScore: 100,
@@ -15,6 +16,7 @@
         passRate: 33.33
     }
  */
+
 const questions = [
     {
         id: 1,
@@ -74,7 +76,7 @@ const submissions = [
 
 const correctAnswersMap = new Map(questions.map(q => [q.id, q.correctAnswer]));
 
-const studentScores = submissions.map(submission => {   
+const studentScores = submissions.map(submission => {
     let correctCount = 0;
     submission.answers.forEach(answer => {
         if (correctAnswersMap.get(answer.questionId) === answer.answer) {
@@ -87,30 +89,59 @@ const studentScores = submissions.map(submission => {
         student: submission.student,
         score: score,
         correct: correctCount,
-        wrong: submission.answers.length - correctCount
+        wrong: questions.length - correctCount
     };
 });
 
-const averagescore = studentScores.reduce((sum, s) => sum + s.score, 0) / studentScores.length;
+const averageScore = studentScores.length > 0
+    ? studentScores.reduce((sum, student) => sum + student.score, 0) / studentScores.length
+    : 0;
 
-const highestScore = Math.max(...studentScores.map(s => s.score));
+const scoreValues = studentScores.map(student => student.score);
+const highestScore = scoreValues.length > 0 ? Math.max(...scoreValues) : 0;
 
-const lowestScore = Math.min(...studentScores.map(s => s.score));
+const lowestScore = scoreValues.length > 0 ? Math.min(...scoreValues) : 0;
 
-const passedstudents = studentScores.filter(s => s.score >= 70).length;
+const passedStudents = studentScores.filter(student => student.score >= 70).length;
 
-const failedStudents = studentScores.length - passedstudents;
+const failedStudents = studentScores.length - passedStudents;
 
-const passRate = (passedstudents / studentScores.length) * 100; 
+const passRate = studentScores.length > 0
+    ? (passedStudents / studentScores.length) * 100
+    : 0;
+
+const categoryAverages = [...new Set(questions.map(question => question.category))]
+    .map(category => {
+        const categoryQuestionIds = questions
+            .filter(question => question.category === category)
+            .map(question => question.id);
+        let correctAnswers = 0;
+
+        submissions.forEach(submission => {
+            submission.answers.forEach(answer => {
+                if (
+                    categoryQuestionIds.includes(answer.questionId) &&
+                    correctAnswersMap.get(answer.questionId) === answer.answer
+                ) {
+                    correctAnswers++;
+                }
+            });
+        });
+
+        const possibleAnswers = categoryQuestionIds.length * submissions.length;
+        const averageScore = possibleAnswers > 0
+            ? (correctAnswers / possibleAnswers) * 100
+            : 0;
+
+        return { category, averageScore: Number(averageScore.toFixed(2)) };
+    });
 
 const examAnalytics = {
     totalStudents: studentScores.length,
-    averageScore: parseFloat(averageScore.toFixed(2)),  
+    averageScore: Number(averageScore.toFixed(2)),
     highestScore: highestScore,
     lowestScore: lowestScore,
     passedStudents: passedStudents,
     failedStudents: failedStudents,
-    passRate: parseFloat(passRate.toFixed(2))
-};  
-
-
+    passRate: Number(passRate.toFixed(2))
+};

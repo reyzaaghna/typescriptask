@@ -1,8 +1,8 @@
 /**
  * A social media platform stores posts.
  * Tasks:
- * 1. Find post that containing "typescript"!
- * 2. Find post that containing "nestjs"!
+ * 1. Find posts containing the "typescript" hashtag.
+ * 2. Find posts containing the "nestjs" hashtag.
  * 3. Find the post with highest number of likes!
  * 4. Calculate the total of likes!
  */
@@ -42,4 +42,3 @@ const postWithMostLikes = posts.reduce((maxPost, currentPost) => {
 }, posts[0]);
 
 const totalLikes = posts.reduce((sum, post) => sum + post.likes, 0);
-

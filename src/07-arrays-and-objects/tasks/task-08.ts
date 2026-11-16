@@ -35,14 +35,15 @@ const employees = [
 
 const employeesWithAverageScore = employees.map(employee => {
     const totalScore = employee.projects.reduce((sum, project) => sum + project.score, 0);
-    const averageScore = totalScore / employee.projects.length;
+    const averageScore = employee.projects.length > 0
+        ? totalScore / employee.projects.length
+        : 0;
     return {
         name: employee.name,
-        averageScore: averageScore
+        averageScore
     };
 });
 
 const employeesAbove85 = employeesWithAverageScore.filter(employee => employee.averageScore > 85);
 
 const employeesWithLowScore = employees.filter(employee => employee.projects.some(project => project.score < 80));          
-

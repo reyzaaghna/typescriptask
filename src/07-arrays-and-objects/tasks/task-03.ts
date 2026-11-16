@@ -1,16 +1,16 @@
 /**
  * A school has attendance data below.
  * Tasks:
- * 1. Get all student's names who are present
+ * 1. Get all students' names who are present
  * expected array: ["Andi","Citra"]
- * 2. Get all students who are present
+ * 2. Get all students' names who are absent
  * expected array: ["Budi"]
- * 3. Get students who are late
+ * 3. Get all students' names who are late
  * expected array: ["Deni"]
- * 4. Generate array that contains {name, status}
+ * 4. Generate an array that contains {name, status}
  */
 
-const student = [
+const students = [
     { id: 1, name: "Andi" },
     { id: 2, name: "Budi" },
     { id: 3, name: "Citra" },
@@ -24,26 +24,28 @@ const attendance = [
     { studentId: 4, status: "late" },
 ];
 
-const getStudentName = (id : number) => student.find(s => s.id === id)?.name;
+const getStudentName = (id: number) => students.find(student => student.id === id)?.name;
 
 const presentStudentNames = attendance
     .filter(record => record.status === "present")
-    .map(record => getStudentName(record.studentId));
+    .map(record => getStudentName(record.studentId))
+    .filter((name): name is string => name !== undefined);
 
 const absentStudentNames = attendance
     .filter(record => record.status === "absent")
-    .map(record => getStudentName(record.studentId));
-
+    .map(record => getStudentName(record.studentId))
+    .filter((name): name is string => name !== undefined);
 
 const lateStudentNames = attendance
     .filter(record => record.status === "late")
-    .map(record => getStudentName(record.studentId));
+    .map(record => getStudentName(record.studentId))
+    .filter((name): name is string => name !== undefined);
 
 
-const studentStatusList = student.map(s => {
-    const record = attendance.find(a => a.studentId === s.id);
+const studentStatusList = students.map(student => {
+    const record = attendance.find(attendanceRecord => attendanceRecord.studentId === student.id);
     return {
-        name: s.name,
+        name: student.name,
         status: record ? record.status : "unknown"
     };
 });
